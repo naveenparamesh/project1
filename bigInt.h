@@ -7,8 +7,8 @@ class bigInt{
   public:
     bigInt(long num = 0);
     void setNum(long num);
-    signed long bigIntToLong();
-    bitset<64> getNumber();
+    long bigIntToLong();
+    bigInt twosComplement(bitset<64>& number);
     bigInt operator+(bigInt bInt);
     bigInt operator-(bigInt bInt);
     bigInt operator*(bigInt bInt);
@@ -16,5 +16,4 @@ class bigInt{
   private:
     bitset<64> number;
     int addBit(int bit1, int bit2, int& carry_in, int& carry_out);
-
 };

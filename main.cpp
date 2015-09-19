@@ -9,7 +9,7 @@ ostream& operator << (ostream& os, bigInt& bgInt){
 }
 
 istream& operator >> (istream& is, bigInt& bgInt){
-  signed long num;//a temp number to hold the input value
+  long num;//a temp number to hold the input value
   is >> num;
   bgInt.setNum(num);//actually sets this input to the object bitset for it to store
 }
@@ -51,7 +51,12 @@ int main(){
         break;
        }
       case 2:
-      
+      {
+        receiveInput(number1, number2);
+        cout <<"\nThe  difference of these two numbers is: ";
+        bigInt difference = number1 - number2;
+        cout << difference << endl;
+      }
         break;
       case 3:
     

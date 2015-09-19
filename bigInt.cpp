@@ -15,8 +15,10 @@ void bigInt::setNum(long num){
   number = temp;
 }
 
-bitset<64> bigInt::getNumber(){
-  return number;
+bigInt bigInt::twosComplement(bitset<64>& number){
+  number.flip(); // flip all the bits in the bitset
+  bigInt bi(1);
+  *(this) = *(this) + bi;
 }
 
 long bigInt::bigIntToLong(){
@@ -24,9 +26,7 @@ long bigInt::bigIntToLong(){
     return number.to_ulong();
   }
   else {// its a negative number, thus perform two's complement and add negative sign on the end
-    number.flip(); // flip all the bits in the bitset
-    bigInt bi(1);
-    *(this) = *(this) + bi;
+    twosComplement(number);
     long result_num = number.to_ulong();
     return (-result_num);
   }
@@ -72,12 +72,18 @@ bigInt bigInt::operator+(bigInt bInt){
   int carry_out = 0;
   
     for(int i = 0; i < 64; i++){
-      sum[i] = addBit(number[i], bInt.getNumber()[i], carry_in, carry_out);
+      sum[i] = addBit(number[i], bInt.number[i], carry_in, carry_out);
       carry_in = carry_out;
       carry_out = 0;
     }
     
   number = sum;
   bigInt newBigInt = *(this);
+  return newBigInt;
+}
+
+bigInt bigInt::operator-(bigInt bInt){
+  bInt.twosComplement(bInt.number);// changes bInt to it's two's complement form
+  bigInt newBigInt = *(this) + bInt;
   return newBigInt;
 }
