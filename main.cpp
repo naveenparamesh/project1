@@ -14,18 +14,61 @@ istream& operator >> (istream& is, bigInt& bgInt){
   bgInt.setNum(num);//actually sets this input to the object bitset for it to store
 }
 
+void displayMenu(int& choice){
+  cout << "Pick the number of the operation you want to do:" << endl;
+  cout << "1. Addition" << endl;
+  cout << "2. Subtraction" << endl;
+  cout << "3. Multiplication" << endl;
+  cout << "4. Division" << endl;
+  cout << "5. Exit Program" << endl;
+  cin >> choice;
+  return;
+}
 
-int main(){
-  
-  bigInt number1;
-  bigInt number2;
+void receiveInput(bigInt& number1, bigInt& number2){
   cout << "Please enter in an integer value: ";
   cin >> number1;
   cout << "Please enter in another integer value: ";
   cin >> number2;
-  cout << "The addition of these two numbers is: ";
-  bigInt sum = number1 + number2;
-  cout << sum << endl;
+}
+
+
+int main(){
+  
+  int choice = 0;
+  bigInt number1;
+  bigInt number2;
+  
+  while(choice != 5){
+    displayMenu(choice);
+    switch(choice){
+      case 1:
+       {
+        receiveInput(number1, number2);
+        cout << "\nThe addition of these two numbers is: ";
+        bigInt sum = number1 + number2;
+        cout << sum << endl;
+        break;
+       }
+      case 2:
+      
+        break;
+      case 3:
+    
+        break;
+      case 4:
+    
+        break;
+      case 5:
+      
+        break;
+      default:
+        cout << "That's not a valid choice, please choose again!" << endl;
+        break;
+    }
+    
+  }
+  
 
   return 0;
 }
