@@ -8,7 +8,7 @@ class bigInt{
     bigInt(long num = 0);
     void setNum(long num);
     long bigIntToLong();
-    bigInt twosComplement(bitset<64>& number);
+    void twosComplement(bitset<64>& number);
     bigInt operator+(bigInt bInt);
     bigInt operator-(bigInt bInt);
     bigInt operator*(bigInt bInt);

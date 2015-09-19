@@ -59,6 +59,13 @@ int main(){
       }
         break;
       case 3:
+      {
+        receiveInput(number1, number2);
+        cout <<"\nThe  product of these two numbers is: ";
+        bigInt product = number1 * number2;
+        cout << product << endl;  
+        
+      }
     
         break;
       case 4:

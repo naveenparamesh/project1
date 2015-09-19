@@ -15,10 +15,11 @@ void bigInt::setNum(long num){
   number = temp;
 }
 
-bigInt bigInt::twosComplement(bitset<64>& number){
+void bigInt::twosComplement(bitset<64>& number){
   number.flip(); // flip all the bits in the bitset
   bigInt bi(1);
   *(this) = *(this) + bi;
+  
 }
 
 long bigInt::bigIntToLong(){
@@ -26,8 +27,9 @@ long bigInt::bigIntToLong(){
     return number.to_ulong();
   }
   else {// its a negative number, thus perform two's complement and add negative sign on the end
-    twosComplement(number);
+    twosComplement(number);//change it to negative of original value
     long result_num = number.to_ulong();
+    twosComplement(number);//change back to its original form
     return (-result_num);
   }
 }
@@ -86,4 +88,26 @@ bigInt bigInt::operator-(bigInt bInt){
   bInt.twosComplement(bInt.number);// changes bInt to it's two's complement form
   bigInt newBigInt = *(this) + bInt;
   return newBigInt;
+}
+
+bigInt bigInt::operator*(bigInt bInt){
+  bigInt c;
+
+  if(bInt.bigIntToLong() < 0){
+    bInt.twosComplement(bInt.number); //make it the negative value of itself
+    twosComplement(number);
+  }
+  
+
+  while(bInt.bigIntToLong() != 0){
+    if((bInt.bigIntToLong() & 1) == 1){// check if rightmost bit is 1
+      c = c + *(this);//with *(this) representing a, the multiplicand
+    }
+    
+    bInt.number = bInt.number >> 1;
+    number = number << 1;
+  }
+  
+  return c;
+  
 }
