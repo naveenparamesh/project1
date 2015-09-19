@@ -4,7 +4,6 @@
 #include "bigInt.h"
 using namespace std;
 
-
 ostream& operator << (ostream& os, bigInt& bgInt){
   os << bgInt.bigIntToLong() << endl;
 }
@@ -17,6 +16,7 @@ istream& operator >> (istream& is, bigInt& bgInt){
 
 
 int main(){
+  
   bigInt number1;
   bigInt number2;
   cout << "Please enter in an integer value: ";
@@ -26,10 +26,6 @@ int main(){
   cout << "The addition of these two numbers is: ";
   bigInt sum = number1 + number2;
   cout << sum << endl;
-
-
-
-
 
   return 0;
 }

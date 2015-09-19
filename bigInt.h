@@ -13,14 +13,8 @@ class bigInt{
     bigInt operator-(bigInt bInt);
     bigInt operator*(bigInt bInt);
 
-
-
-
-
   private:
     bitset<64> number;
     int addBit(int bit1, int bit2, int& carry_in, int& carry_out);
-
-
 
 };
