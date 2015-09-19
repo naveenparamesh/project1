@@ -10,7 +10,7 @@ ostream& operator << (ostream& os, bigInt& bgInt){
 }
 
 istream& operator >> (istream& is, bigInt& bgInt){
-  long num;//a temp number to hold the input value
+  signed long num;//a temp number to hold the input value
   is >> num;
   bgInt.setNum(num);//actually sets this input to the object bitset for it to store
 }
@@ -25,7 +25,7 @@ int main(){
   cin >> number2;
   cout << "The addition of these two numbers is: ";
   bigInt sum = number1 + number2;
-  cout << sum;
+  cout << sum << endl;
 
 
 

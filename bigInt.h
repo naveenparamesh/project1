@@ -7,7 +7,7 @@ class bigInt{
   public:
     bigInt(long num = 0);
     void setNum(long num);
-    long bigIntToLong();
+    signed long bigIntToLong();
     bitset<64> getNumber();
     bigInt operator+(bigInt bInt);
     bigInt operator-(bigInt bInt);

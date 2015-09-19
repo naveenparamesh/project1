@@ -27,8 +27,11 @@ long bigInt::bigIntToLong(){
   else {// its a negative number, thus perform two's complement and add negative sign on the end
     number.flip(); // flip all the bits in the bitset
     bigInt bi(1);
+    //cout << "the flipped binary for -2 is: " << number << endl; 
     *(this) = *(this) + bi;
+    //cout << "the flipped added 1 binary for -2 is: " << number << endl; 
     long result_num = number.to_ulong();
+    //cout << "value of number is: " << -result_num << endl;
     return (-result_num);
   }
 }
@@ -70,24 +73,13 @@ bigInt bigInt::operator+(bigInt bInt){
   bitset<64> sum;
   int carry_in = 0;
   int carry_out = 0;
-  long size1 = bigIntToLong();
-  long size2 = bInt.bigIntToLong();
   
-  if(size1 > size2){
-    for(int i = 0; i < number.size(); i++){
-      sum[i] = addBit(number[i], bInt.number[i], carry_in, carry_out);
+    for(int i = 0; i < 64; i++){
+      sum[i] = addBit(number[i], bInt.getNumber()[i], carry_in, carry_out);
       carry_in = carry_out;
       carry_out = 0;
     }
-  }
-  else {
-    for(int i = 0; i < bInt.number.size(); i++){
-      sum[i] = addBit(number[i], bInt.number[i], carry_in, carry_out);
-      carry_in = carry_out;
-      carry_out = 0;
-    }
-  }
-
+  
   number = sum;
   bigInt newBigInt = *(this);
   return newBigInt;
