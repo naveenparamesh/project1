@@ -5,7 +5,7 @@
 using namespace std;
 
 ostream& operator << (ostream& os, bigInt& bgInt){
-  os << bgInt.bigIntToLong() << endl;
+  os << bgInt.bigIntToValue() << endl;
 }
 
 istream& operator >> (istream& is, bigInt& bgInt){
@@ -36,39 +36,49 @@ void receiveInput(bigInt& number1, bigInt& number2){
 int main(){
   
   int choice = 0;
-  bigInt number1;
-  bigInt number2;
+  bigInt int1;
+  bigInt int2;
   
   while(choice != 5){
     displayMenu(choice);
     switch(choice){
       case 1:
        {
-        receiveInput(number1, number2);
+        receiveInput(int1, int2);
         cout << "\nThe addition of these two numbers is: ";
-        bigInt sum = number1 + number2;
+        bigInt sum = int1 + int2;
         cout << sum << endl;
         break;
        }
       case 2:
       {
-        receiveInput(number1, number2);
+        receiveInput(int1, int2);
         cout <<"\nThe  difference of these two numbers is: ";
-        bigInt difference = number1 - number2;
+        bigInt difference = int1 - int2;
         cout << difference << endl;
       }
         break;
       case 3:
       {
-        receiveInput(number1, number2);
+        receiveInput(int1, int2);
         cout <<"\nThe  product of these two numbers is: ";
-        bigInt product = number1 * number2;
+        bigInt product = int1 * int2;
         cout << product << endl;  
         
       }
     
         break;
       case 4:
+      {
+        receiveInput(int1, int2);
+        cout <<"\nThe  double represented quotient of these two numbers is: ";
+        double doub_quotient = int1.divideBigIntToDouble(int2);
+        cout << doub_quotient << endl;  
+        cout <<"\nThe  integer represented quotient of these two numbers is: ";
+        bigInt quotient = int1.divideBigInt(int2);
+        cout << quotient << endl;
+        
+      }
     
         break;
       case 5:

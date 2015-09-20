@@ -22,7 +22,7 @@ void bigInt::twosComplement(bitset<64>& number){
   
 }
 
-long bigInt::bigIntToLong(){
+long bigInt::bigIntToValue(){
   if(number[number.size() - 1] == 0){//check leftmost bit to see if positive number
     return number.to_ulong();
   }
@@ -68,7 +68,7 @@ int bigInt::addBit(int bit1, int bit2, int& carry_in, int& carry_out){
 
 }
 
-bigInt bigInt::operator+(bigInt bInt){
+bigInt bigInt::operator+(bigInt& bInt){
   bitset<64> sum;
   int carry_in = 0;
   int carry_out = 0;
@@ -84,23 +84,23 @@ bigInt bigInt::operator+(bigInt bInt){
   return newBigInt;
 }
 
-bigInt bigInt::operator-(bigInt bInt){
+bigInt bigInt::operator-(bigInt& bInt){
   bInt.twosComplement(bInt.number);// changes bInt to it's two's complement form
   bigInt newBigInt = *(this) + bInt;
   return newBigInt;
 }
 
-bigInt bigInt::operator*(bigInt bInt){
+bigInt bigInt::operator*(bigInt& bInt){
   bigInt c;
 
-  if(bInt.bigIntToLong() < 0){
+  if(bInt.bigIntToValue() < 0){
     bInt.twosComplement(bInt.number); //make it the negative value of itself
     twosComplement(number);
   }
   
 
-  while(bInt.bigIntToLong() != 0){
-    if((bInt.bigIntToLong() & 1) == 1){// check if rightmost bit is 1
+  while(bInt.bigIntToValue() != 0){
+    if((bInt.bigIntToValue() & 1) == 1){// check if rightmost bit is 1
       c = c + *(this);//with *(this) representing a, the multiplicand
     }
     
@@ -109,5 +109,15 @@ bigInt bigInt::operator*(bigInt bInt){
   }
   
   return c;
-  
+}
+
+double bigInt::divideBigIntToDouble(bigInt& bInt){
+  double quotient;
+  quotient = ((double)bigIntToValue()) / bInt.bigIntToValue();
+  return quotient;
+}
+
+bigInt bigInt::divideBigInt(bigInt& bInt){
+  bigInt newBigInt(bigIntToValue() / bInt.bigIntToValue());
+  return newBigInt;
 }
